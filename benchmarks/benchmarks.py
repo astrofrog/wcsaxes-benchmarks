@@ -1,36 +1,54 @@
 # Write the benchmarking functions here.
 # See "Writing benchmarks" in the asv docs for more information.
 
+import os
+
+ROOT = os.path.abspath(os.path.dirname(__file__))
+
 
 class TimeSuite:
     """
     An example benchmark that times the performance of various kinds
     of iterating over dictionaries in Python.
     """
+
     def setup(self):
-        self.d = {}
-        for x in range(500):
-            self.d[x] = None
 
-    def time_keys(self):
-        for key in self.d.keys():
-            pass
+        import matplotlib
+        matplotlib.use('Agg')
 
-    def time_iterkeys(self):
-        for key in self.d.iterkeys():
-            pass
+        from matplotlib import pyplot as plt
+        self.fig = plt.figure()
 
-    def time_range(self):
-        d = self.d
-        for key in range(500):
-            x = d[key]
+        from astropy.io import fits
+        self.msx_header = fits.Header.fromtextfile(os.path.join(ROOT, 'msx_header'))
 
-    def time_xrange(self):
-        d = self.d
-        for key in xrange(500):
-            x = d[key]
+    def time_basic_plot(self):
 
+        from astropy.wcs import WCS
+        from wcsaxes import WCSAxes
 
-class MemSuite:
-    def mem_list(self):
-        return [0] * 256
+        ax = WCSAxes(self.fig, [0.15, 0.15, 0.7, 0.7],
+                     wcs=WCS(self.msx_header))
+        self.fig.add_axes(ax)
+
+        ax.set_xlim(-0.5, 148.5)
+        ax.set_ylim(-0.5, 148.5)
+
+        self.fig.canvas.draw()
+
+    def time_basic_plot_with_grid(self):
+
+        from astropy.wcs import WCS
+        from wcsaxes import WCSAxes
+
+        ax = WCSAxes(self.fig, [0.15, 0.15, 0.7, 0.7],
+                     wcs=WCS(self.msx_header))
+        self.fig.add_axes(ax)
+
+        ax.grid(color='red', alpha=0.5, linestyle='solid')
+
+        ax.set_xlim(-0.5, 148.5)
+        ax.set_ylim(-0.5, 148.5)
+
+        self.fig.canvas.draw()
