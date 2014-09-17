@@ -3,6 +3,15 @@
 
 import os
 
+from astropy.io import fits
+from astropy.wcs import WCS
+from wcsaxes import WCSAxes
+
+# Use the OO interface to really benchmark WCSAxes and not pyplot
+
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+
 ROOT = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -14,41 +23,34 @@ class TimeSuite:
 
     def setup(self):
 
-        import matplotlib
-        matplotlib.use('Agg')
-
-        from matplotlib import pyplot as plt
-        self.fig = plt.figure()
-
-        from astropy.io import fits
         self.msx_header = fits.Header.fromtextfile(os.path.join(ROOT, 'msx_header'))
 
     def time_basic_plot(self):
 
-        from astropy.wcs import WCS
-        from wcsaxes import WCSAxes
+        fig = Figure()
+        canvas = FigureCanvas(fig)
 
-        ax = WCSAxes(self.fig, [0.15, 0.15, 0.7, 0.7],
+        ax = WCSAxes(fig, [0.15, 0.15, 0.7, 0.7],
                      wcs=WCS(self.msx_header))
-        self.fig.add_axes(ax)
+        fig.add_axes(ax)
 
         ax.set_xlim(-0.5, 148.5)
         ax.set_ylim(-0.5, 148.5)
 
-        self.fig.canvas.draw()
+        canvas.draw()
 
     def time_basic_plot_with_grid(self):
 
-        from astropy.wcs import WCS
-        from wcsaxes import WCSAxes
+        fig = Figure()
+        canvas = FigureCanvas(fig)
 
-        ax = WCSAxes(self.fig, [0.15, 0.15, 0.7, 0.7],
+        ax = WCSAxes(fig, [0.15, 0.15, 0.7, 0.7],
                      wcs=WCS(self.msx_header))
-        self.fig.add_axes(ax)
+        fig.add_axes(ax)
 
         ax.grid(color='red', alpha=0.5, linestyle='solid')
 
         ax.set_xlim(-0.5, 148.5)
         ax.set_ylim(-0.5, 148.5)
 
-        self.fig.canvas.draw()
+        canvas.draw()
