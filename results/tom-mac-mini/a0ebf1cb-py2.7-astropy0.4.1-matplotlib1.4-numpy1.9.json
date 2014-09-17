@@ -20,8 +20,8 @@
         "numpy": "1.9"
     }, 
     "results": {
-        "benchmarks.TimeSuite.time_basic_plot": 0.10178799999999999, 
-        "benchmarks.TimeSuite.time_basic_plot_with_grid": 0.1614500000000001
+        "benchmarks.TimeSuite.time_basic_plot": 0.08004900000000001, 
+        "benchmarks.TimeSuite.time_basic_plot_with_grid": 0.10626539999999998
     }, 
     "version": 1
 }
