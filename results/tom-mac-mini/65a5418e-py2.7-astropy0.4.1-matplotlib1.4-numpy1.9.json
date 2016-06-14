@@ -1,0 +1,27 @@
+{
+    "commit_hash": "65a5418eb5b27f222127c387599410f54f7c7f73", 
+    "date": 1407761576000, 
+    "params": {
+        "arch": "x86_64", 
+        "astropy": "0.4.1", 
+        "cpu": "Intel(R) Core(TM) i5-2415M CPU @ 2.30GHz", 
+        "machine": "tom-mac-mini", 
+        "matplotlib": "1.4", 
+        "numpy": "1.9", 
+        "os": "MacOS X 10.8", 
+        "python": "2.7", 
+        "ram": 8589934592
+    }, 
+    "profiles": {}, 
+    "python": "2.7", 
+    "requirements": {
+        "astropy": "0.4.1", 
+        "matplotlib": "1.4", 
+        "numpy": "1.9"
+    }, 
+    "results": {
+        "benchmarks.TimeSuite.time_basic_plot": 0.07483379999999999, 
+        "benchmarks.TimeSuite.time_basic_plot_with_grid": 0.09034279999999999
+    }, 
+    "version": 1
+}

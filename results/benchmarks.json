@@ -1,0 +1,23 @@
+{
+    "benchmarks.TimeSuite.time_basic_plot": {
+        "code": "def time_basic_plot(self):\n\n    fig = Figure()\n    canvas = FigureCanvas(fig)\n\n    ax = WCSAxes(fig, [0.15, 0.15, 0.7, 0.7],\n                 wcs=WCS(self.msx_header))\n    fig.add_axes(ax)\n\n    ax.set_xlim(-0.5, 148.5)\n    ax.set_ylim(-0.5, 148.5)\n\n    canvas.draw()\n", 
+        "goal_time": 2.0, 
+        "name": "benchmarks.TimeSuite.time_basic_plot", 
+        "number": 0, 
+        "repeat": 3, 
+        "timeout": 60.0, 
+        "type": "time", 
+        "unit": "seconds"
+    }, 
+    "benchmarks.TimeSuite.time_basic_plot_with_grid": {
+        "code": "def time_basic_plot_with_grid(self):\n\n    fig = Figure()\n    canvas = FigureCanvas(fig)\n\n    ax = WCSAxes(fig, [0.15, 0.15, 0.7, 0.7],\n                 wcs=WCS(self.msx_header))\n    fig.add_axes(ax)\n\n    ax.grid(color='red', alpha=0.5, linestyle='solid')\n\n    ax.set_xlim(-0.5, 148.5)\n    ax.set_ylim(-0.5, 148.5)\n\n    canvas.draw()\n", 
+        "goal_time": 2.0, 
+        "name": "benchmarks.TimeSuite.time_basic_plot_with_grid", 
+        "number": 0, 
+        "repeat": 3, 
+        "timeout": 60.0, 
+        "type": "time", 
+        "unit": "seconds"
+    }, 
+    "version": 1
+}
